@@ -14,6 +14,8 @@ overflow-x:hidden;
 
 export const MainWrapper = styled.div`
 display:flex;
-border:1px solid red;
 justify-content:center;
+width:80%;
+margin:auto auto;
+
 `;

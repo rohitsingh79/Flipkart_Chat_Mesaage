@@ -10,7 +10,7 @@ function  ItemCard({ order , getOrderInfo}) {
 
     return (
         <>
-            <ItemCardWrapper onClick={()=>orderClickHandler(order.title)}>
+            <ItemCardWrapper onClick={()=>orderClickHandler(order)}>
                 <ImageWrapper> 
                     <img src={order.imageURL}
                         className='main-image'

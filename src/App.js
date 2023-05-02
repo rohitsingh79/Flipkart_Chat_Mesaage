@@ -13,6 +13,7 @@ function App() {
   const [orderDetails, setOrderDetails] = useState([]);
   const [filteredDetails, setFilteredDetails] = useState([]);
   const [inputData, setInputData] = useState('');
+  const [selectedOrder, setSelectedOrder] = useState({});
 
   const getOrderDetails = async () => {
     const res = await axios.get('https://my-json-server.typicode.com/codebuds-fk/chat/chats');
@@ -33,11 +34,13 @@ function App() {
   }, [inputData])
 
 
-  const currentOrderHandler = ( currOrderTitle) => {
+  const currentOrderHandler = (currOrder) => {
 
-    console.log('inside currentOrderHandler', currOrderTitle);
+    setSelectedOrder(currOrder);
 
   }
+
+  console.log('selected order', selectedOrder);
 
 
   return (
@@ -51,7 +54,9 @@ function App() {
               filteredDetails.map((order, index) => <ItemCard order={order} getOrderInfo={currentOrderHandler}></ItemCard>)
             }
           </OrderDetailChatBox>
-          {/* <OrderDetailChatBox></OrderDetailChatBox> */}
+          {Object.keys(selectedOrder).length > 0 && <OrderDetailChatBox>
+            <ChatBox selectedOrder = {selectedOrder} ></ChatBox>
+          </OrderDetailChatBox>}
         </MainWrapper>
       </AppContext.Provider>
 
