@@ -1,13 +1,25 @@
-import {MessageWrapper} from './style';
+import { MessageWrapper, BotMesageWrapper, UserMessageWrapper } from './style';
 
 
-function MessageChat({ selectedOrder }) {
+function MessageChat({ messageList }) {
 
-    console.log('selectedOrder', selectedOrder);
+
+    const RenderUserBotMessage = () => {
+
+        return (
+
+            <div>{messageList.map((msg, index) => {
+
+                return msg.sender == 'BOT' ? <BotMesageWrapper>{msg.message}</BotMesageWrapper> : <UserMessageWrapper>{msg.message}</UserMessageWrapper>
+
+            })}</div>
+
+        )
+    }
 
     return (
         <MessageWrapper>
-            message chat
+            {RenderUserBotMessage()}
         </MessageWrapper>
     );
 }

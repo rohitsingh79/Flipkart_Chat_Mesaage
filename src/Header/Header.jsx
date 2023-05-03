@@ -10,9 +10,6 @@ function Header() {
 
     const inputHandler = (e) => {
         setInputData(e.target.value);
-
-        console.log('on change input handler is called');
-
     }
 
 

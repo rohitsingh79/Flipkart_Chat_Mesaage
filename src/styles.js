@@ -8,8 +8,8 @@ margin-top: 32px;
 margin-left: auto;
 margin-right:auto;
 width:50%;
-overflow-y:auto;
-overflow-x:hidden;
+overflow-y:scroll;
+
 `;
 
 export const MainWrapper = styled.div`

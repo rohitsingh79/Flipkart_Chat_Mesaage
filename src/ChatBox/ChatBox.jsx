@@ -15,7 +15,7 @@ function ChatBox({ selectedOrder }) {
             </ChatBoxImageWrapper>
             <div className='title'>{selectedOrder.title}</div>
         </ChatBoxHeader>
-        <Messages>hello</Messages>
+        <Messages messageList = {selectedOrder.messageList}>hello</Messages>
         </>
     );
 }
