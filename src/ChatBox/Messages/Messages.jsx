@@ -9,7 +9,8 @@ background:${props => props.type == 'bot' ? 'white' : '#027CD5'};
 
 export const OptionedMessageWrapper = styled.div`
 background:#f5f5f5;
-.optioned-message{
+.optioned-message
+{
     border-bottom:1px solid rgb(240, 240, 240);
     padding:16px;
 }
