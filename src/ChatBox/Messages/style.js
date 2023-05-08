@@ -1,18 +1,17 @@
 import styled from "styled-components";
 
-export const  MessageWrapper = styled.div`
+export const  MessagesWrapper = styled.div`
 width:100%;
 height:100%;
 background:#f1f3f6;
+.chat-spacing{
+    margin-left:32px;
+    margin-right:32px;
+}
 `;
 
-export const BotMesageWrapper = styled.div`
-border:1px solid black;
+export const MessageTextWrapper = styled.div`
 padding:8px 4px 16px 4px;
+display:flex;
+justify-content:${props=> props.type=='bot'?'flex-start':'flex-end'};
 `;
-
-export const UserMessageWrapper = styled.div`
-border:1px solid black;
-padding:8px 4px 16px 4px;
-background:#027CD5;
-`
