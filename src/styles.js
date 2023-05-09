@@ -9,7 +9,6 @@ margin-left: auto;
 margin-right:auto;
 width:50%;
 overflow-y:scroll;
-
 `;
 
 export const MainWrapper = styled.div`

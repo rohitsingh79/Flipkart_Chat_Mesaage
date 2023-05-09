@@ -3,8 +3,6 @@ import Messages from './Messages/Messages';
 
 function ChatBox({ selectedOrder }) {
 
-    console.log('selectedOrder message list', selectedOrder.messageList);
-
     return (
         <>
         <ChatBoxHeader>

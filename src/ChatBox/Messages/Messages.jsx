@@ -7,12 +7,28 @@ border-radius:${props => props.type === 'bot' ? '0 10px 10px 10px' : '10px 0 10p
 background:${props => props.type == 'bot' ? 'white' : '#027CD5'};
 `;
 
+export const MessageEnterWrapper = styled.div`
+width:100%;
+psotion:fixed;
+border:2px solid res;
+height:200px;
+`;
+
 export const OptionedMessageWrapper = styled.div`
 background:#f5f5f5;
 .optioned-message
 {
     border-bottom:1px solid rgb(240, 240, 240);
     padding:16px;
+}
+
+.optioned-text{
+    color:#027CD5;
+}
+
+.optioned-sub-text{
+color:grey;
+margin-top:16px;
 }
 `;
 
@@ -21,7 +37,10 @@ function Messages({ messageList }) {
     function OptionedMessage({ options }) {
         return (
             <OptionedMessageWrapper>
-                {options.map((optionsMessage) => <div className='optioned-message'>{optionsMessage.optionText}</div>)}
+                {options.map((optionsMessage) => <div className='optioned-message'>
+                    <div className='optioned-text'>{optionsMessage.optionText}</div>
+                    {optionsMessage.optionSubText && <div className='optioned-sub-text'>{optionsMessage.optionSubText}</div>}
+                </div>)}
             </OptionedMessageWrapper>
         )
 
@@ -51,6 +70,7 @@ function Messages({ messageList }) {
     return (
         <MessagesWrapper>
             {RenderUserBotMessage()}
+            <MessageEnterWrapper>Type a message</MessageEnterWrapper>
         </MessagesWrapper>
     );
 }
