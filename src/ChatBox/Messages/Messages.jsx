@@ -1,17 +1,11 @@
 import { MessagesWrapper, MessageTextWrapper } from './style';
 import styled from "styled-components";
+import { useEffect, useState } from 'react';
 
 export const Message = styled.div`
 padding:16px 16px 32px 16px;
 border-radius:${props => props.type === 'bot' ? '0 10px 10px 10px' : '10px 0 10px 10px'};
 background:${props => props.type == 'bot' ? 'white' : '#027CD5'};
-`;
-
-export const MessageEnterWrapper = styled.div`
-width:100%;
-psotion:fixed;
-border:2px solid res;
-height:200px;
 `;
 
 export const OptionedMessageWrapper = styled.div`
@@ -33,6 +27,20 @@ margin-top:16px;
 `;
 
 function Messages({ messageList }) {
+
+    const [lastMessageId, setLastMessageId] = useState('');
+
+    useEffect(() => {
+
+        console.log('use effect is executed');
+
+        setLastMessageId(messageList[messageList.length - 1]);
+
+    }, [])
+
+    // console.log('lastMessageId', lastMessageId);
+
+
 
     function OptionedMessage({ options }) {
         return (
@@ -70,9 +78,17 @@ function Messages({ messageList }) {
     return (
         <MessagesWrapper>
             {RenderUserBotMessage()}
-            <MessageEnterWrapper>Type a message</MessageEnterWrapper>
         </MessagesWrapper>
     );
 }
 
 export default Messages;
+
+
+// {
+//     "messageId": "msg2",
+//         "message": "Need help with this order",
+//             "timestamp": 1632205237669,
+//                 "sender": "USER",
+//                     "messageType": "text"
+// }

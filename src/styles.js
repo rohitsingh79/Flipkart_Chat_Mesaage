@@ -8,7 +8,7 @@ margin-top: 32px;
 margin-left: auto;
 margin-right:auto;
 width:50%;
-overflow-y:scroll;
+overflow-y:${props=> props.chatWindow?'scroll':'auto'};
 `;
 
 export const MainWrapper = styled.div`

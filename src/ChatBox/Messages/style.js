@@ -8,6 +8,7 @@ background:#f1f3f6;
     margin-left:32px;
     margin-right:32px;
 }
+overflow-y:scroll;
 `;
 
 export const MessageTextWrapper = styled.div`

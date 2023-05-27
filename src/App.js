@@ -40,13 +40,36 @@ function App() {
 
   }
 
-  console.log('selected order', selectedOrder);
+  const setInputMessageFromUser = (message, id) => {
+
+    console.log('message', message);
+    console.log('id', id);
+
+    if (id) {
+
+      console.log('selectedOrder', selectedOrder.messageList);
+
+      const messageObject = {message:'message' , messageId:'msg2' , messageType:'text' , sender:'USER' , timestamp:''}
+
+      console.log('after message object' , selectedOrder);
+
+
+      setSelectedOrder({...selectedOrder.messageList.push('message') });
+      
+
+
+    }
+
+
+  }
+
+  console.log('selected order' ,selectedOrder);
 
 
   return (
     <div className="App">
 
-      <AppContext.Provider value={{ setInputData, inputData }}>
+      <AppContext.Provider value={{ setInputData, inputData, selectedOrder }}>
         <MainWrapper>
           <OrderDetailChatBox>
             <Header />
@@ -54,8 +77,8 @@ function App() {
               filteredDetails.map((order, index) => <ItemCard order={order} getOrderInfo={currentOrderHandler}></ItemCard>)
             }
           </OrderDetailChatBox>
-          {Object.keys(selectedOrder).length > 0 && <OrderDetailChatBox>
-            <ChatBox selectedOrder = {selectedOrder} ></ChatBox>
+          {Object.keys(selectedOrder).length > 0 && <OrderDetailChatBox chatWindow>
+            <ChatBox selectedOrder={selectedOrder} getMessageFromUser={setInputMessageFromUser} ></ChatBox>
           </OrderDetailChatBox>}
         </MainWrapper>
       </AppContext.Provider>
