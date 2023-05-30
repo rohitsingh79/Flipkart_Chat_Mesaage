@@ -22,6 +22,9 @@ font-size:16px;
     -moz-box-shadow: none;
     box-shadow: none;  
     border-bottom:black;
+    msrgin-right:16px;
+    width:100%;
+    overflow-wrap:break-word;
 }
 `;
 
@@ -34,11 +37,10 @@ height:90%;
 function ChatBox({ selectedOrder , getMessageFromUser }) {
 
     const inputRef = useRef(null);
-
     const messageInputHandler = () => {
         getMessageFromUser(inputRef.current.value , selectedOrder.id);
+        inputRef.current.value = '';
     }
-
     return (
         <>
             <ChatBoxHeader>

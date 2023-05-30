@@ -15,4 +15,7 @@ export const MessageTextWrapper = styled.div`
 padding:8px 4px 16px 4px;
 display:flex;
 justify-content:${props=> props.type=='bot'?'flex-start':'flex-end'};
+.message-options-text{
+    diplay:block;
+}
 `;

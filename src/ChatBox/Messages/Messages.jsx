@@ -26,19 +26,28 @@ margin-top:16px;
 }
 `;
 
+export const TimeStampWrapper = styled.div`
+border-radius:20px;
+height:20%;
+width:20%;
+margin:auto auto;
+background:white;
+padding:8px 24px;
+color:grey;
+font-weight:500;
+margin-bottom:48px;
+margin-top:24px;
+
+`;
+
 function Messages({ messageList }) {
 
     const [lastMessageId, setLastMessageId] = useState('');
 
     useEffect(() => {
-
-        console.log('use effect is executed');
-
         setLastMessageId(messageList[messageList.length - 1]);
-
     }, [])
 
-    // console.log('lastMessageId', lastMessageId);
 
 
 
@@ -54,22 +63,42 @@ function Messages({ messageList }) {
 
     }
 
+    function getTimeStamp(message) {
+        console.log('inside', message);
+        const timeStamp = message.timestamp;
+        const dateTime = new Date(timeStamp);
+        const dayDate = dateTime.getDate();
+        const year = dateTime.getFullYear();
+        const month = dateTime.getMonth();
+        const finalDate = `${dayDate}/${month}/${year}`;
+
+        console.log('finalDate', finalDate);
+
+        return (
+            <TimeStampWrapper>{finalDate}</TimeStampWrapper>
+        )
+    }
+
 
     const RenderUserBotMessage = () => {
         return (
             <div className='chat-spacing'>{messageList.map((msg, index) => {
-                return msg.sender == 'BOT' ? <MessageTextWrapper key={`bot-${index}`} type={'bot'}>
-                    <div className='message-options-text'>
-                        <Message type={'bot'}>
-                            {msg.message}
-                        </Message>
-                        {msg.messageType == 'optionedMessage' && <OptionedMessage options={msg.options} ></OptionedMessage>}
-                    </div>
-                </MessageTextWrapper> :
-                    <MessageTextWrapper key={`bot-${index}`} type={'user'}><Message type={'user'}>{msg.message}</Message>
-                    </MessageTextWrapper>
+                return (
+                    <>
+                        {getTimeStamp(msg)}
+                        {msg.sender == 'BOT' ? <MessageTextWrapper key={`bot-${index}`} type={'bot'}>
+                            <div className='message-options-text'>
+                                <Message type={'bot'}>
+                                    {msg.message}
+                                </Message>
+                                {msg.messageType == 'optionedMessage' && <OptionedMessage options={msg.options} ></OptionedMessage>}
+                            </div>
+                        </MessageTextWrapper> :
+                        <MessageTextWrapper key={`bot-${index}`} type={'user'}><Message type={'user'}>{msg.message}</Message>
+                        </MessageTextWrapper>}
+                    </>
 
-
+                )
             })}</div>
 
         )
@@ -83,12 +112,3 @@ function Messages({ messageList }) {
 }
 
 export default Messages;
-
-
-// {
-//     "messageId": "msg2",
-//         "message": "Need help with this order",
-//             "timestamp": 1632205237669,
-//                 "sender": "USER",
-//                     "messageType": "text"
-// }

@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react';
 import AppContext from './Context/context';
 
 function App() {
-
   const [orderDetails, setOrderDetails] = useState([]);
   const [filteredDetails, setFilteredDetails] = useState([]);
   const [inputData, setInputData] = useState('');
@@ -41,34 +40,15 @@ function App() {
   }
 
   const setInputMessageFromUser = (message, id) => {
-
-    console.log('message', message);
-    console.log('id', id);
-
     if (id) {
-
-      console.log('selectedOrder', selectedOrder.messageList);
-
-      const messageObject = {message:'message' , messageId:'msg2' , messageType:'text' , sender:'USER' , timestamp:''}
-
-      console.log('after message object' , selectedOrder);
-
-
-      setSelectedOrder({...selectedOrder.messageList.push('message') });
-      
-
-
+      const messageObject = { messageId: id, message: message, sender: 'USER', timestamp: new Date().getTime(), messageType: typeof message }
+      setSelectedOrder({ ...selectedOrder, ...selectedOrder.messageList.push(messageObject) });
     }
-
-
   }
-
-  console.log('selected order' ,selectedOrder);
 
 
   return (
     <div className="App">
-
       <AppContext.Provider value={{ setInputData, inputData, selectedOrder }}>
         <MainWrapper>
           <OrderDetailChatBox>
